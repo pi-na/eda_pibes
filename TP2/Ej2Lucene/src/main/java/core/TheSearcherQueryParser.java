@@ -39,8 +39,8 @@ public class TheSearcherQueryParser {
         	IndexSearcher searcher= new IndexSearcher(index);
         	searcher.setSimilarity(new ClassicSimilarity());
         	
- 			//{ abierto ] cerrado
-        	String queryStr= "content:{gaming TO gum]";
+ 			//    { abierto   ;  [ cerrado
+        	String queryStr="content:hm~2";
         	
         	QueryParser queryparser = new QueryParser(null, new StandardAnalyzer() );
          	Query query= queryparser.parse(queryStr);
