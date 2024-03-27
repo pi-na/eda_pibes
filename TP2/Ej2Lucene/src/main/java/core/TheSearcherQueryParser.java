@@ -1,18 +1,26 @@
 package core;
 
-import org.apache.lucene.search.*;
+
+import org.apache.lucene.search.IndexSearcher;
+
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.similarities.ClassicSimilarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+
+
 import java.io.IOException;
 import java.nio.file.Paths;
 
 
-public class TheSearcher {
+public class TheSearcherQueryParser {
 	
 	private static IndexReader getIndexReader() throws IOException {
 		
@@ -31,15 +39,12 @@ public class TheSearcher {
         	IndexSearcher searcher= new IndexSearcher(index);
         	searcher.setSimilarity(new ClassicSimilarity());
         	
+ 			//{ abierto ] cerrado
+        	String queryStr= "content:{gaming TO gum]";
         	
-        	// field of interest
-        	String fieldName = "content";
-        	String queryStr= "ga";
+        	QueryParser queryparser = new QueryParser(null, new StandardAnalyzer() );
+         	Query query= queryparser.parse(queryStr);
         	
-        	Term myTerm = new Term(fieldName, queryStr);
-//			Query query= new TermQuery(myTerm );
-			Query query = new PhraseQuery (fieldName, "game", "video");
-
         	// run the query
         	long startTime = System.currentTimeMillis();       	
         	TopDocs topDocs = searcher.search(query, 20);
@@ -65,14 +70,11 @@ public class TheSearcher {
 				// print docID, score
 				System.out.println(aD);
 				
-				// obtain ALL the stored fields
+				// obtain the stored fields
 				Document aDoc = searcher.doc(docID);
-				System.out.println("Stored fields: " + aDoc);
-				System.out.println(aDoc.get("path"));
-				System.out.println(aDoc.get("content"));
-				 /*
-				Explanation rta = searcher.explain(query, docID);
-	            System.out.println(rta);*/
+				System.out.println("stored fields: " + aDoc);
+//				Explanation rta = searcher.explain(query, docID);
+//	            System.out.println(rta);
 	         
 	            position++;
 	            System.out.println();
