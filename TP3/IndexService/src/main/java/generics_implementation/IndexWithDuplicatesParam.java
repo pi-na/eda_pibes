@@ -1,4 +1,4 @@
-package generics_implementation.int_implementation;/*              !!USAR UN ARREGLO ORDENADO!!
+package generics_implementation;/*              !!USAR UN ARREGLO ORDENADO!!
 >declarar una constante con el tamaño de chunksize por el que irá creciendo el arreglo.
     para crecer el arreglo usar Arrays.copyOf
 >implementar un método privado getClosestPosition, retorna:

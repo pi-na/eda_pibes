@@ -1,4 +1,4 @@
-package generics_implementation.int_implementation;
+package generics_implementation;
 
 import java.util.Arrays;
 

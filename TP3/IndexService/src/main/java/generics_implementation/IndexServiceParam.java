@@ -1,4 +1,4 @@
-package generics_implementation.int_implementation;
+package generics_implementation;
 
 public interface IndexServiceParam<T extends Comparable<? super T>> {
     // elements serán los valores del índice, los anteriores se descartan.
