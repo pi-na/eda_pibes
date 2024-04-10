@@ -5,19 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7e51dcd-5060-4493-ae43-41d579d32294" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/IdxRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/src/main/java/IndexServiceParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/src/main/java/IndexWithDuplicatesParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../betterIndex/src/main/java/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../betterIndex/src/main/java/IndexWithDuplicatesParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/../betterIndex/src/main/java/IndexWithDuplicatesParam.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712752411187</updated>
-      <workItem from="1712752412434" duration="4453000" />
+      <workItem from="1712752412434" duration="5584000" />
     </task>
     <servers />
   </component>

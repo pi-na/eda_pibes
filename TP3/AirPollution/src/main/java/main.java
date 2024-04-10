@@ -1,6 +1,7 @@
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Map<Long, CSVRecord> data = new HashMap<>();
         IndexServiceParam<IdxRecord<Double, Long>> IndexByPollution = new IndexWithDuplicatesParam<>(IdxRecord.class);
 
@@ -31,5 +32,6 @@ public class main {
         }
 
         in.close();
+        System.out.println(IndexByPollution.search(new IdxRecord<Double, Long>(2.8)));
     }
 }

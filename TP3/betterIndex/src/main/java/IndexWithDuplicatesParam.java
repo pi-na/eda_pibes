@@ -79,6 +79,8 @@ public class IndexWithDuplicatesParam<T extends Comparable<? super T>> implement
 
         int insertIndex = getClosestPosition(key);
 
+        insertIndex = insertIndex < 0? dim:insertIndex;
+
         //System.out.println("insertIndex: " + insertIndex + " dim: " + dim);
         if(insertIndex < dim){
             for(int i = dim; i > insertIndex; i--){
