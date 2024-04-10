@@ -24,14 +24,25 @@ public class main {
         for (CSVRecord record : records) {
             Long currentRowId = record.getRecordNumber();
             data.put(currentRowId, record);
-            IndexByPollution.insert(new IdxRecord<Double, Long>(Double.valueOf(record.get("daily_max_8_hour_co_concentration")), currentRowId));
-
-//            String value = record.get("daily_max_8_hour_co_concentration");
-//            System.out.println(String.format("%s, %s", value, record.toString()));
+            IdxRecord<Double, Long> currentIdxRecord = new IdxRecord<Double, Long>(Double.valueOf(record.get("daily_max_8_hour_co_concentration")), currentRowId);
+            System.out.println("trying to insert " + currentIdxRecord);
+            IndexByPollution.insert(currentIdxRecord);
+            IndexByPollution.sortedPrint();
 
         }
 
         in.close();
+
+        //querys
         System.out.println(IndexByPollution.search(new IdxRecord<Double, Long>(2.8)));
+
+        Double minValue = IndexByPollution.getMin().getKey();
+        IdxRecord<Double, Long> minValueIdxRecord = new IdxRecord<Double, Long>(minValue);
+        IdxRecord<Double, Long>[] minimalRecordValues = IndexByPollution.range(minValueIdxRecord, minValueIdxRecord, true, true);
+        for(IdxRecord<Double, Long> record : minimalRecordValues){
+            System.out.println(record);
+            System.out.println(data.get(record.getRow()).toString());
+        }
+        IndexByPollution.sortedPrint();
     }
 }
