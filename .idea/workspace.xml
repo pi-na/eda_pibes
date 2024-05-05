@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3518101-8c12-4fe7-9d51-d7583f32c3ff" name="Changes" comment="" />
+    <list default="true" id="f3518101-8c12-4fe7-9d51-d7583f32c3ff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TP3/Listas/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/src/main/java/SortedLinkedList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP3/MyList/src/main/java/SortedListService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP4/Hashing/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP4/Hashing/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP4/Hashing/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP4/Hashing/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TP4/Hashing/src/main/java/ClosedHashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TP3/Listas/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/src/main/java/SortedLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/TP3/Listas/src/main/java/SortedLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList$Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList$Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList$SortedLinkedListIterator.class" beforeDir="false" afterPath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList$SortedLinkedListIterator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/TP3/Listas/target/classes/SortedLinkedList.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +36,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2fWW03d4elcOlLvV5MG8nluwB7C" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,6 +50,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/Users/tomaspinausig/code/maven/EDA",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -36,6 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1713917087778</updated>
       <workItem from="1713917088941" duration="17000" />
+      <workItem from="1713961323158" duration="635000" />
     </task>
     <servers />
   </component>

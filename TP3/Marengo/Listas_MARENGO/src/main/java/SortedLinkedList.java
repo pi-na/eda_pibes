@@ -1,104 +1,31 @@
+import java.awt.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
 // lista simplemente encadenada, no acepta repetidos (false e ignora) ni nulls (exception)
 public class SortedLinkedList<T extends Comparable<? super T>> implements SortedListService<T>{
-
 	private Node root;
 	private int size;
 	private Node last;
 
-// iterativa
+	//	delega en Node
 	@Override
 	public boolean insert(T data) {
 		if (data == null)
 			throw new IllegalArgumentException("data cannot be null");
 		
-		Node prev = null;
-		Node current= root;
-		
-		while( current != null && current.data.compareTo(data) <0    ) {
-			// avanzo
-			prev= current;
-			current= current.next;
-		}
-		
-		// repetido?
-		if ( current!= null && current.data.compareTo(data) ==0  ) {  
-			System.err.printf("Insertion failed %s%n", data);
-			return false;
-		}
-
-		// insercion segura
-		Node aux = new Node(data, current);
-		
-		// como engancho??? cambia el root???
-		if (current == root)
-			// cambie el primero
-			root= aux;
-		else  // nodo interno
-			prev.next= aux;
-
-		if (aux.next == null)
-			last = aux;
-
-		size++;
-		return true;
-	}
-
-//region Otros Inserts
-	// recursiva desde afuera
-	//@Override
-	public boolean insert2(T data) {
-		if (data == null)
-			throw new IllegalArgumentException("data cannot be null");
-		
-		boolean[] rta= new boolean[1];
- 		root =insertRec( data, root,  rta);
-		
-		return rta[0];
-	}
-
-	private Node insertRec(T data, Node current, boolean[] rta ) {
-		// repetido?
-		if ( current!= null && current.data.compareTo(data) ==0  ) {  
-			System.err.println(String.format("Insertion failed %s", data));
-			rta[0]= false;
-			return current;
-		}
-
-		if( current != null && current.data.compareTo(data) <0    ) {
-			// avanzo
-			current.next   = insertRec(data, current.next, rta);
-			return current;
-		}
-		
-		
-		// estoy en parado en el lugar a insertar
-		rta[0]= true;
-		return new Node(data, current);
-		
-	}
-
-	// delega en Node
-	//	@Override
-	public boolean insert3(T data) {
-		if (data == null)
-			throw new IllegalArgumentException("data cannot be null");
-		
 		if (root == null) {
-			root= new Node(data, null);
+			root = new Node(data, null);
 			return true;
 		}
 		
 		boolean[] rta= new boolean[1];
- 		root =root.insert( data,  rta);
-		
+ 		root = root.insert(data,  rta);
+		if(rta[0]) size++;
 		return rta[0];
 	}
-	//endregion
-	
+
 	@Override
 	public boolean find(T data) {
 		return getPos(data) != -1;
@@ -252,8 +179,8 @@ public class SortedLinkedList<T extends Comparable<? super T>> implements Sorted
 	}
 
 	private class SortedLinkedListIterator implements Iterator<T> {
+		private Node prev = null;
 		private Node current = root;
-		Stack<Node> stack = new Stack<>();
 
 		@Override
 		public boolean hasNext() {
@@ -265,27 +192,41 @@ public class SortedLinkedList<T extends Comparable<? super T>> implements Sorted
 			if(!hasNext())
 				throw new NoSuchElementException();
 			T toReturn = current.data;
-			stack.push(current);
+			prev = current;
 			current = current.next;
 			return toReturn;
 		}
 
 		@Override
 		public void remove() {
-			if(stack.isEmpty())
-				throw new IllegalStateException();
-			Node prev = stack.pop();
-			if(prev == root) //
-				root=current;
-			else if(prev == last){
-				last = stack.pop();
-				last.next = null;
+			if(current == null){
+				throw new IllegalStateException("list is empty");
 			}
-			else{
-				prev = stack.pop(); //necesito el anterior del anterior de current
-				prev.next = current; //uno el anterior del anterior con el current
-				stack = new Stack<>();
+			if(current == root){
+				root = current.next;
+				return;
 			}
+			if(prev == null){
+				throw new IllegalStateException("must get next element before removing");
+			}
+			prev.next = current.next;
+			current = prev;
+			prev = null;
 		}
+	}
+
+	public static void main(String[] args) {
+		SortedLinkedList<Integer> list = new SortedLinkedList<>();
+		list.insert(1);
+		list.insert(2);
+		list.insert(3);
+		Iterator<Integer> iter = list.iterator();
+		System.out.println(iter.next());
+		System.out.println("=======");
+		iter.remove();
+		for(Integer n : list){
+			System.out.println(n);
+		}
+
 	}
 }
