@@ -62,6 +62,7 @@ public class SortedLinkedListWithHeader<T extends Comparable<? super T>> impleme
 		// lo encontre?
 		if (current!=null && current.data.compareTo(data) == 0) {
 			// borrando
+			size--;
 			if (current == root)
 				root= root.next;
 			else {
@@ -70,9 +71,8 @@ public class SortedLinkedListWithHeader<T extends Comparable<? super T>> impleme
 					last = prev;
 				}
 				prev.next = current.next;	//Si removi el last, le paso null a prev.next (efectivamente haciendolo last)
-				size--;
-				return true;
 			}
+			return true;
 		}
 		return false;
 	}
@@ -145,12 +145,14 @@ public class SortedLinkedListWithHeader<T extends Comparable<? super T>> impleme
 	
 	@Override
 	public T getMin() {
+		if(root == null) return null;
 		return root.getData();
 	}
 
 
 	@Override
 	public T getMax() {
+		if(root == null) return null;
 		return last.getData();
 	}
 
@@ -263,73 +265,57 @@ public class SortedLinkedListWithHeader<T extends Comparable<? super T>> impleme
 	}
 
 	public static void main(String[] args) {
-		SortedLinkedListWithHeader<String> l = new SortedLinkedListWithHeader<>();
+		SortedLinkedListWithHeader<String> list = new SortedLinkedListWithHeader<>();
 
-		l.insert("hola");
-		l.insert("tal");
-		l.insert("que");
-		for (String s : l) {
+		// Prueba de inserción
+		System.out.println("Insertando elementos...");
+		list.insert("banana");
+		list.insert("apple");
+		list.insert("cherry");
+		list.dump();
+
+		// Prueba de eliminación
+		System.out.println("Eliminando 'apple'...");
+		list.remove("apple");
+		list.dump();
+
+		// Prueba de búsqueda
+		System.out.println("Buscando 'banana'...");
+		System.out.println(list.find("banana") ? "Elemento encontrado." : "Elemento no encontrado.");
+
+		// Prueba de obtener mínimo y máximo
+		System.out.println("Elemento mínimo: " + list.getMin());
+		System.out.println("Elemento máximo: " + list.getMax());
+
+		// Prueba del tamaño de la lista
+		System.out.println("Tamaño de la lista: " + list.size());
+
+		// Prueba de la lista vacía
+		System.out.println("La lista está vacía: " + list.isEmpty());
+
+		// Prueba de iterador
+		System.out.println("Iterando sobre la lista...");
+		for (String s : list) {
 			System.out.println(s);
 		}
 
+		// Prueba de la funcionalidad del iterador remove
+		Iterator<String> it = list.iterator();
+		while (it.hasNext()) {
+			String data = it.next();
+			if (data.equals("cherry")) {
+				it.remove();
+			}
+		}
+		System.out.println("Lista después de eliminar 'cherry' con el iterador:");
+		list.dump();
 
-		System.out.println("lista " +  (l.isEmpty()? "":"NO") + " vacia");
-		System.out.println(l.size() );
-		System.out.println(l.getMin() );
-		System.out.println(l.getMax() );
-		System.out.println();
-		
-		System.out.println(l.insert("hola"));
-		l.dump();
-		System.out.println();
-		
-		System.out.println("lista " +  (l.isEmpty()? "":"NO") + " vacia");
-		System.out.println();
-		
-		System.out.println(l.insert("tal"));
-		l.dump();
-		System.out.println();
-		
-		System.out.println(l.insert("ah"));
-		l.dump();
-		System.out.println();
-		
-		System.out.println(l.insert("veo"));
-		l.dump();
-		System.out.println();
-		
-		System.out.println(l.insert("bio"));
-		l.dump();
-		System.out.println();
-		
-		System.out.println(l.insert("tito"));
-		l.dump();
-		System.out.println();
-
-
-		System.out.println(l.insert("hola"));
-		l.dump();
-		System.out.println();
-		
-		
-		System.out.println(l.insert("aca"));
-		l.dump();
-		System.out.println();
-
-		System.out.println("ELIMINANDO ah, hola, veo");
-		l.remove("ah");
-		l.remove("hola");
-		l.remove("veo");
-		l.dump();
-		System.out.println();
-		
-		System.out.println(l.size() );
-		System.out.println(l.getMin() );
-		System.out.println(l.getMax() );
-		System.out.println();
-
-		l.dump();
+		// Prueba de igualdad
+		SortedLinkedListWithHeader<String> anotherList = new SortedLinkedListWithHeader<>();
+		anotherList.insert("banana");
+		System.out.println("Listas iguales: " + list.equals(anotherList));
 	}
+
 
 
 }
