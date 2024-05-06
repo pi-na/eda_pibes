@@ -31,7 +31,7 @@ public class Levenshtein {
             // Arranca desde la fila 1 pues la fila 0 la lleno Levenshtein
             for(int row=1; row<= verticalWord.length; row++) {
                 for(int col=1; col<= horizontalWord.length; col++) {
-                    //  Usa un llamado a min dentro del otro pq min no funciona con 3 argumentos!
+                    //  Usa un llamado a min dentro del otro pq la funcion min toma unicamente 2 argumentos!
                     matrix[row][col] = Math.min(
                             //  Si las letras son iguales, no se suma nada, si no, se suma 1
                             matrix[row-1][col-1] + (( verticalWord[row-1]== horizontalWord[col-1])?0:1),
