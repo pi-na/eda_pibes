@@ -3,6 +3,7 @@ import java.util.List;
 
 public class KMP {
 
+    //  Genera la tabla de next para la query, a partir de los sufijos y prefijos
     public List<Integer> nextComputation(char[] query) {
         int border = 0;
         int current = 1;
@@ -16,9 +17,11 @@ public class KMP {
             }
             else {
                 if(border != 0) {
+                    //  Ahora border es el borde de la tabla next[border-1]
                     border = next.get(border-1);
                 }
                 else {
+                    //  Si no hay sufijos y prefijos iguales, se agrega un 0
                     next.add(border);
                     current++;
                 }
@@ -27,6 +30,7 @@ public class KMP {
         return next;
     }
 
+    //  Devuelve el indice de la primera ocurrencia de query en target, usando KMP y la tabla de next
     public int indexOf(char[] query, char[] target) {
         List<Integer> next = nextComputation(query);
         int i = 0;
@@ -50,6 +54,7 @@ public class KMP {
         return -1;
     }
 
+    //  Devuelve una lista con los indices de todas las ocurrencias de query en target, usando KMP muchas veces
     public List<Integer> findAll(char[] query, char[] target) {
         List<Integer> next = nextComputation(query);
         List<Integer> toReturn = new ArrayList<>();
