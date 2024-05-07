@@ -92,11 +92,7 @@ public class EvaluatorPostfija {
 		
 		throw new RuntimeException("invalid operator" +  op);
 	}
-	
-	
-	
-	
-	
+
 		
 	public static void main(String[] args) {
 		Double rta = new EvaluatorPostfija().evaluate();
