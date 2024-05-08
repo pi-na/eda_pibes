@@ -1,6 +1,15 @@
 package ej1;
 import java.util.Random;
 
+
+/*
+1.2) Calcular la complejidad temporal y espacial del método randomSplitListas. Justificar su cálculo.
+
+*/
+
+
+
+
 public class Lista{
 
 	private Item first;
@@ -53,6 +62,7 @@ public class Lista{
 			listasToReturn[i] = new Lista();
 		}
 
+
 		//Recorro la lista original y voy asignando los elementos a las listas
 		//arranco con el first de mi header
 		Item current = first;
@@ -63,13 +73,14 @@ public class Lista{
 				listasToReturn[i].first = current;
 				listasToReturn[i].last = current;
 			} else {
-				// Si no agrego el elemento al final
+				// Si no, agrego el elemento actual al final de la lista dada
 				listasToReturn[i].last.next = current;
 				listasToReturn[i].last = current;
 			}
 			current = current.next;
 		}
 
+		//LOS LAST DE CADA LISTA PODRIAN ESTAR APUNTANDO A SU NEXT ORIGINAL! DESCONECTO.
 		for (Lista lista : listasToReturn) {
 			if (lista.last != null) {
 				lista.last.next = null;
@@ -78,7 +89,6 @@ public class Lista{
 
 		first = null;
 		last = null;
-
 		return listasToReturn;
 	}
 
@@ -182,7 +192,7 @@ public class Lista{
 	
 	
 	// caso de uso D (main4) 
-	public static void main4(String[] args) {
+	public static void main(String[] args) {
 		Lista l = new Lista(); // l tiene 0 items
 		// lista original al principio
 		System.out.print("First, the original list is ");
