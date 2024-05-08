@@ -3,6 +3,8 @@ import java.util.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+/*    Todos los test ok B^)      */
+
 public class EvaluatorInfijaTest {
 
     @Test
@@ -76,4 +78,36 @@ public class EvaluatorInfijaTest {
         EvaluatorInfija evaluator = new EvaluatorInfija();
         return evaluator.evaluate();
     }
+
+    @Test
+    public void testMultipleOperations() {
+        String input = "2 + 3 * 4 - 5 / 2";
+        assertEquals(Double.valueOf(11.5), injectInputAndGetResult(input));
+    }
+
+    @Test
+    public void testComplexNestedParentheses() {
+        String input = "( 2 + ( 3 * ( 4 - 2 ) ) ) ^ 2";
+        assertEquals(Double.valueOf(64), injectInputAndGetResult(input));
+    }
+
+    @Test
+    public void testMixOfAllOperations() {
+        String input = "( 5 + 3 * 10 - 4 ) / ( 2 ^ 2 ) + 1";
+        assertEquals(Double.valueOf(8.75), injectInputAndGetResult(input));
+    }
+
+    @Test
+    public void testLongExpression() {
+        String input = "2 * 3 + 5 * 7 - 3 / 2 + 4 ^ 2 - 1";
+        assertEquals(Double.valueOf(54.5), injectInputAndGetResult(input));
+    }
+
+    @Test
+    public void testExpressionWithAllOperators() {
+        String input = "( 6 + 2 ) * ( 5 - 3 ) / ( 14 / 7 ) + 10 - 3 ^ 2";
+        assertEquals(Double.valueOf(9), injectInputAndGetResult(input));
+    }
+
+
 }
