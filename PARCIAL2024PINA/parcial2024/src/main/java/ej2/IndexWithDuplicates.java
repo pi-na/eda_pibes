@@ -6,7 +6,7 @@ import java.util.Arrays;
  IMPLEMENTAR: merge(IndexWithDuplicates other). Este método debe fusionar dos índices ordenados en uno solo,
  manteniendo la integridad de la ordenación y respetando la múltiple aparición de elementos repetidos, si corresponde.
 
- Debe buscar espacio para alace
+ Debe buscar espacio para almacenar los nuevos elementos A LO SUMO UNA VEZ
  */
 
 public class IndexWithDuplicates  {
@@ -46,32 +46,54 @@ public class IndexWithDuplicates  {
 	}
 
 	public void merge(IndexWithDuplicates other) {
-		if (other == null || other.indexedData == null) {
-			throw new IllegalArgumentException("Other IndexWithDuplicates cannot be null");
-		}
-
-		int[] otherData = other.indexedData;
-		int[] mergedData = new int[this.cantElems + other.cantElems];
-
+		int[] mergedData = new int[cantElems + other.cantElems];
 		int i = 0, j = 0, k = 0;
-		while (i < this.cantElems && j < other.cantElems) {
-			if (this.indexedData[i] <= otherData[j]) {
-				mergedData[k++] = this.indexedData[i++];
+
+		while (i < cantElems && j < other.cantElems) {
+			if (indexedData[i] <= other.indexedData[j]) {
+				mergedData[k++] = indexedData[i++];
 			} else {
-				mergedData[k++] = otherData[j++];
+				mergedData[k++] = other.indexedData[j++];
 			}
 		}
 
-		while (i < this.cantElems) {
-			mergedData[k++] = this.indexedData[i++];
+		while (i < cantElems) {
+			mergedData[k++] = indexedData[i++];
 		}
 
 		while (j < other.cantElems) {
-			mergedData[k++] = otherData[j++];
+			mergedData[k++] = other.indexedData[j++];
 		}
 
-		this.indexedData = mergedData;
-		this.cantElems = k;
-		}
+		indexedData = mergedData;
+		cantElems = k;
+	}
+
+	public static void main(String[] args) {
+		IndexWithDuplicates index1 = new IndexWithDuplicates();
+		index1.initialize(new int[]{1, 3, 5, 7});
+		IndexWithDuplicates index2 = new IndexWithDuplicates();
+		index2.initialize(new int[]{2, 4, 6, 8});
+		index1.merge(index2);
+		index1.print();
+		System.out.println("Resultado esperado: [1, 2, 3, 4, 5, 6, 7, 8]");
+		System.out.println("===============");
+
+		index1 = new IndexWithDuplicates();
+		index1.initialize(new int[] {1, 1, 3, 5, 7});
+		index2 = new IndexWithDuplicates(); index2.initialize(new int[] {2, 4, 4, 6, 8});
+		index1.merge(index2);
+		index1.print();
+		System.out.println("Resultado esperado: [1, 1, 2, 3, 4, 4, 5, 6, 7, 8]");
+		System.out.println("===============");
+
+		index1 = new IndexWithDuplicates();
+		index1.initialize(new int[] {1, 3, 5});
+		index2 = new IndexWithDuplicates(); index2.initialize(new int[] {2, 4, 6, 8, 10});
+		index1.merge(index2);
+		index1.print();
+		System.out.println("Resultado esperado: [1, 2, 3, 4, 5, 6, 8, 10]");
+
+	}
 }
 
