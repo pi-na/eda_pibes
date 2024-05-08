@@ -46,27 +46,27 @@ public class IndexWithDuplicates  {
 	}
 
 	public void merge(IndexWithDuplicates other) {
-		int[] mergedData = new int[cantElems + other.cantElems];
-		int i = 0, j = 0, k = 0;
+		int[] newData = new int[cantElems + other.cantElems];
+		int indexThis = 0, indexOther = 0, indexMerged = 0;
 
-		while (i < cantElems && j < other.cantElems) {
-			if (indexedData[i] <= other.indexedData[j]) {
-				mergedData[k++] = indexedData[i++];
+		while (indexThis < cantElems && indexOther < other.cantElems) {
+			if (indexedData[indexThis] <= other.indexedData[indexOther]) {
+				newData[indexMerged++] = indexedData[indexThis++];
 			} else {
-				mergedData[k++] = other.indexedData[j++];
+				newData[indexMerged++] = other.indexedData[indexOther++];
 			}
 		}
 
-		while (i < cantElems) {
-			mergedData[k++] = indexedData[i++];
+		while (indexThis < cantElems) {
+			newData[indexMerged++] = indexedData[indexThis++];
 		}
 
-		while (j < other.cantElems) {
-			mergedData[k++] = other.indexedData[j++];
+		while (indexOther < other.cantElems) {
+			newData[indexMerged++] = other.indexedData[indexOther++];
 		}
 
-		indexedData = mergedData;
-		cantElems = k;
+		this.cantElems = indexMerged;
+		this.indexedData = newData;
 	}
 
 	public static void main(String[] args) {

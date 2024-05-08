@@ -192,7 +192,7 @@ public class Lista{
 	
 	
 	// caso de uso D (main4) 
-	public static void main(String[] args) {
+	public static void main4(String[] args) {
 		Lista l = new Lista(); // l tiene 0 items
 		// lista original al principio
 		System.out.print("First, the original list is ");
