@@ -6,15 +6,20 @@ import java.util.Objects;
 import java.util.function.Function;
 
 public class OpenHashing<K,V> implements IndexParametricService<K,V> {
+    // Tamaño inicial de la tabla de hash
     final private int initialLookupSize= 10;
+    // Umbral de carga para rehashing
     final private double threshold = 0.75;
+    // Tamaño actual de la tabla
     private int size = 0;
-
+    // Tabla de hash
     @SuppressWarnings({"unchecked"})
     private List<Slot<K,V>>[] lookup = (LinkedList<Slot<K,V>>[]) Array.newInstance(LinkedList.class, initialLookupSize);
 
+    // Función de prehashing
     private Function<? super K, Integer> prehash;
 
+    // Constructor que recibe la función de mapeo
     public OpenHashing( Function<? super K, Integer> mappingFn) {
         if (mappingFn == null)
             throw new RuntimeException("fn not provided");
@@ -22,6 +27,7 @@ public class OpenHashing<K,V> implements IndexParametricService<K,V> {
         prehash= mappingFn;
     }
 
+    // Función de hash
     private int hash(K key) {
         if (key == null)
             throw new IllegalArgumentException("key cannot be null");
@@ -29,23 +35,21 @@ public class OpenHashing<K,V> implements IndexParametricService<K,V> {
         return prehash.apply(key) % lookup.length;
     }
 
+    // Inserta o actualiza un elemento en la tabla
     @Override
     public void insertOrUpdate(K key, V data) {
+        // Validación de argumentos
         if (key == null || data == null) {
-            String msg = String.format("inserting or updating (%s,%s). ", key, data);
-            if (key==null)
-                msg+= "Key cannot be null. ";
-            if (data==null)
-                msg+= "Data cannot be null.";
-
-            throw new IllegalArgumentException(msg);
+            throw new IllegalArgumentException("Key and data cannot be null");
         }
         int index;
         Slot<K,V> slot = new Slot<>(key,data);
 
+        // Se verifica si la lista (overflow) en la posición hash(key) existe, si no se crea
         if(lookup[hash(key)]==null)
             lookup[hash(key)] = new LinkedList<>();
 
+        // Se busca el elemento en la lista, si existe se actualiza, sino se añade
         if((index = lookup[hash(key)].indexOf(slot))>=0)
             lookup[hash(key)].set(index, slot);
         else {
@@ -56,11 +60,13 @@ public class OpenHashing<K,V> implements IndexParametricService<K,V> {
         }
     }
 
+    // Rehashing de la tabla
     @SuppressWarnings({"unchecked"})
     private void rehash() {
         List<Slot<K,V>>[] aux = lookup;
         lookup = (LinkedList<Slot<K,V>>[]) Array.newInstance(LinkedList.class, lookup.length*2);
         size = 0;
+        // Se reinsertan todos los elementos en la nueva tabla
         for (List<Slot<K, V>> list : aux) {
             if(list!=null) {
                 for(Slot<K,V> kvSlot : list)
@@ -69,31 +75,38 @@ public class OpenHashing<K,V> implements IndexParametricService<K,V> {
         }
     }
 
+    // Busca un elemento en la tabla
     @Override
     public V find(K key) {
         if (key == null || lookup[hash(key)]==null)
             return null;
 
+        // Se busca el elemento en la lista correspondiente
         int index = lookup[hash(key)].indexOf(new Slot<K,V>(key));
         return index>=0 ? lookup[hash(key)].get(index).value : null;
     }
 
+    // Elimina un elemento de la tabla
     @Override
     public boolean remove(K key) {
         if(key==null || lookup[hash(key)]==null)
             return false;
 
+        // Se elimina el elemento de la lista correspondiente
         boolean toReturn = lookup[hash(key)].remove(new Slot<K,V>(key));
+        // Si la lista queda vacía se setea como null para ahorrar memoria
         if(lookup[hash(key)].size()==0)
             lookup[hash(key)] = null;
         return toReturn;
     }
 
+    // Devuelve el tamaño actual de la tabla
     @Override
     public int size() {
         return size;
     }
 
+    // Muestra el contenido de la tabla
     @Override
     public void dump() {
         for(List<Slot<K,V>> list : lookup)
@@ -102,6 +115,7 @@ public class OpenHashing<K,V> implements IndexParametricService<K,V> {
             }
     }
 
+    // Clase interna para representar las ranuras de la tabla
     static private final class Slot<K, V>	{
         private final K key;
         private final V value;
