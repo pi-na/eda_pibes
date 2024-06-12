@@ -1,0 +1,12 @@
+### Call
+GET http://localhost:8080/api/devices
+
+### Post
+POST http://localhost:8080/api/devices
+Header:{
+  "type": {
+    "id": "go46xmbqeomjrsjr"
+  },
+  "name": "table lamp",
+  "meta": {}
+}
