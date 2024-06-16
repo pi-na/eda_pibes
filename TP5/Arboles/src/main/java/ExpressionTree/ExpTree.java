@@ -1,7 +1,12 @@
+package ExpressionTree;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/*
+* EJERCICIO DE LA CLASE TP5A - 16A1 16A2 Y 16B
+* */
 
 public class ExpTree {
     private Map<String, Double> variables = new HashMap<>();

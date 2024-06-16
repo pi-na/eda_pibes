@@ -1,0 +1,1 @@
+dir=C:/Users/Gian Luca/Documents/ITBA/EDA/TPs/TP02/Lucene

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="Test" time="0.167" tests="2" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08\target\test-classes;C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08\target\classes;C:\Users\Gian Luca\.m2\repository\joda-time\joda-time\2.10.6\joda-time-2.10.6.jar;C:\Users\Gian Luca\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.2\junit-jupiter-engine-5.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Gian Luca\.m2\repository\org\junit\platform\junit-platform-engine\1.6.2\junit-platform-engine-1.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Gian Luca\.m2\repository\org\junit\platform\junit-platform-commons\1.6.2\junit-platform-commons-1.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.2\junit-jupiter-api-5.6.2.jar;"/>
+    <property name="java.vm.vendor" value="JetBrains s.r.o."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://www.jetbrains.com/"/>
+    <property name="user.timezone" value="America/Buenos_Aires"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\jbr\bin"/>
+    <property name="sun.java.command" value="C:\Users\Gian Luca\AppData\Local\Temp\surefire7168317181982407094\surefirebooter5483069422819153777.jar C:\Users\Gian Luca\AppData\Local\Temp\surefire7168317181982407094 2020-08-10T08-46-14_113-jvmRun1 surefire13722825149567855447tmp surefire_05722219862328897170tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08\target\test-classes;C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08\target\classes;C:\Users\Gian Luca\.m2\repository\joda-time\joda-time\2.10.6\joda-time-2.10.6.jar;C:\Users\Gian Luca\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.2\junit-jupiter-engine-5.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Gian Luca\.m2\repository\org\junit\platform\junit-platform-engine\1.6.2\junit-platform-engine-1.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Gian Luca\.m2\repository\org\junit\platform\junit-platform-commons\1.6.2\junit-platform-commons-1.6.2.jar;C:\Users\Gian Luca\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.6.2\junit-jupiter-api-5.6.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Gian Luca"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2020-04-14"/>
+    <property name="java.home" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\jbr"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\Gian Luca\AppData\Local\Temp\surefire7168317181982407094\surefirebooter5483069422819153777.jar"/>
+    <property name="idea.version2020.1.4" value="true"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.7+10-b765.65"/>
+    <property name="user.name" value="Gian Luca"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="JBR-11.0.7.10-765.65-jfx"/>
+    <property name="localRepository" value="C:\Users\Gian Luca\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://youtrack.jetbrains.com"/>
+    <property name="java.io.tmpdir" value="C:\Users\Gian Luca\AppData\Local\Temp\"/>
+    <property name="java.version" value="11.0.7"/>
+    <property name="user.dir" value="C:\Users\Gian Luca\Documents\ITBA\EDA\TPs\TP01\E08"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\jbr\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\PROGRAM FILES (X86)\COMMON FILES\ORACLE\JAVA\JAVAPATH;C:\PROGRAM FILES\DELL\DW WLAN CARD;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\NVIDIA CORPORATION\PHYSX\COMMON;C:\WINDOWS\SYSTEM32\OPENSSH\;C:\PROGRAM FILES\NVIDIA CORPORATION\NVIDIA NVDLISR;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\WINDOWS\SYSTEM32\OPENSSH\;C:\PROGRAM FILES (X86)\BITVISE SSH CLIENT;C:\MINGW\BIN;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\mpv.net;C:\Ruby27-x64\bin;C:\Users\Gian Luca\AppData\Local\Microsoft\WindowsApps;C:\Users\Gian Luca\AppData\Local\atom\bin;C:\Users\Gian Luca\AppData\Local\GitHubDesktop\bin;C:\Users\Gian Luca\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Gian Luca\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.vendor" value="JetBrains s.r.o."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.version" value="11.0.7+10-b765.65"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="test1" classname="Test" time="0.128"/>
+  <testcase name="test2" classname="Test" time="0.008"/>
+</testsuite>
