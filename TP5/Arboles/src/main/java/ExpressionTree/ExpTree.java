@@ -1,136 +1,111 @@
 package ExpressionTree;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
-/*
-* EJERCICIO DE LA CLASE TP5A - 16A1 16A2 Y 16B
-* */
-
 public class ExpTree {
-    private Map<String, Double> variables = new HashMap<>();
-    private Node root;
-    private StringBuilder expression = new StringBuilder();
-    //TODO Evaluate
 
-    public ExpTree(String infix, Map<String, Double> variables) {
-        this.variables = variables;
-        Scanner inputScanner = new Scanner(infix).useDelimiter("\\n");
+    private Node root;
+
+    public ExpTree(String infija) {
+        // token analyzer
+        Scanner inputScanner = new Scanner(infija).useDelimiter("\\n");
         String line = inputScanner.nextLine();
         inputScanner.close();
         buildTree(line);
-    }
-
-    public ExpTree(String infix) {
-        // token analyzer
-        this(infix, null);
     }
 
     public ExpTree() {
-        System.out.print("Introduzca la expresión en notación infija con todos los parentesis y blancos: ");
-
+        System.out.print("Introduzca la expresion en notacion infija con todos los parentesis y blancos: ");
         // token analyzer
         Scanner inputScanner = new Scanner(System.in).useDelimiter("\\n");
-        String line = inputScanner.nextLine();
+        String line= inputScanner.nextLine();
         inputScanner.close();
 
         buildTree(line);
     }
 
-    private void buildTree(String line) {
+    public String preorder(){
+        StringBuilder sb = new StringBuilder();
+        buildPre(sb, root);
+        return sb.toString();
+    }
+
+    public String postorder(){
+        StringBuilder sb = new StringBuilder();
+        buildPost(sb, root);
+        return sb.toString();
+    }
+
+    public String inorder(){
+        StringBuilder sb = new StringBuilder();
+        buildIn(sb, root);
+        return sb.toString();
+    }
+
+    public double eval(){
+        double result = 0;
+        result = evaluate(root);
+        return result;
+    }
+
+    private Double evaluate(Node node){
+        if(node.left == null || node.right == null){
+            return Double.valueOf(node.data);
+        }
+        return operation(evaluate(node.left), evaluate(node.right), node.data);
+    }
+
+    private Double operation(Double value1, Double value2, String operator){
+        switch (operator) {
+            case ("+"): return value1 + value2;
+            case("-"): return value1 - value2;
+            case ("*"): return value1 * value2;
+            case("/"): return value1 / value2;
+            case("^"): return Math.pow(value1, value2);
+        }
+        return null;
+    }
+
+    private void buildPre(StringBuilder sb, Node node){
+       if(node.left != null && node.right != null) {
+           sb.append(node.data + " ");
+           buildPre(sb, node.left);
+           buildPre(sb, node.right);
+       }
+       else {
+           sb.append(node.data + " ");
+       }
+    }
+
+    private void buildPost(StringBuilder sb, Node node){
+        if(node.left == null && node.right == null) {
+            sb.append(node.data + " ");
+        }
+        else {
+            buildPost(sb, node.left);
+            buildPost(sb, node.right);
+            sb.append(node.data + " ");
+        }
+    }
+
+    private void buildIn(StringBuilder sb, Node node){
+        if(node.left == null && node.right == null){
+            sb.append(node.data + " ");
+        }
+        else{
+            sb.append("(" + " ");
+            buildIn(sb, node.left);
+            sb.append(node.data + " ");
+            buildIn(sb, node.right);
+            sb.append(")" + " ");
+        }
+    }
+
+    private void buildTree(String line)
+    {
         // space separator among tokens
         Scanner lineScanner = new Scanner(line).useDelimiter("\\s+");
-        root = new Node(lineScanner);
+        root= new Node(lineScanner);
         lineScanner.close();
-    }
-
-    public String preOrder() {
-        expression = new StringBuilder();
-        preOrderRec(root);
-        return getExpression();
-    }
-
-    private void preOrderRec(Node node) {
-        if (node == null)
-            return;
-        expression.append(node.data).append(" ");
-        preOrderRec(node.left);
-        preOrderRec(node.right);
-    }
-
-
-    public String postOrder() {
-        expression = new StringBuilder();
-        postOrderRec(root);
-        return getExpression();
-    }
-
-    // fix post order.
-    private void postOrderRec(Node node) {
-        if (node == null) {
-            return;
-        }
-        if (node.isLeaf())
-            expression.append(node.data).append(" ");
-        postOrderRec(node.left);
-        postOrderRec(node.right);
-        if (!node.isLeaf())
-            expression.append(node.data).append(" ");
-    }
-
-    public String inOrder() {
-        expression = new StringBuilder();
-        inOrderRec(root);
-        return getExpression();
-    }
-
-    private void inOrderRec(Node node) {
-        if (node == null)
-            return;
-        if (!node.isLeaf())
-            expression.append("( "); // empieza la expresion.
-        inOrderRec(node.left);
-        expression.append(node.data).append(" ");
-        inOrderRec(node.right);
-        if (!node.isLeaf()) {
-            expression.append(") "); // finaliza la expresion.
-        }
-    }
-
-    public String getExpression() {
-        return expression.toString();
-    }
-
-    //add = update
-    public void addVariable(String name, double value) {
-        variables.put(name, value);
-    }
-
-    public double evaluate() {
-        return evaluateRec(root);
-    }
-
-    private double evaluateRec(Node node) {
-        if (node.isLeaf()) {
-            if (node.data.matches("[A-Za-z][A-Za-z0-9]+")) {
-                return variables.getOrDefault(node.data, 0.0);
-            }
-            return Double.parseDouble(node.data);
-        }
-
-        switch (node.data) {
-            case "+":
-                return evaluateRec(node.left) + evaluateRec(node.right);
-            case "-":
-                return evaluateRec(node.left) - evaluateRec(node.right);
-            case "*":
-                return evaluateRec(node.left) * evaluateRec(node.right);
-            case "/":
-                return evaluateRec(node.left) / evaluateRec(node.right);
-            default:
-                return 0;
-        }
     }
 
     static final class Node {
@@ -140,14 +115,14 @@ public class ExpTree {
         private Scanner lineScanner;
 
         public Node(Scanner theLineScanner) {
-            lineScanner = theLineScanner;
+            lineScanner= theLineScanner;
 
             Node auxi = buildExpression();
-            data = auxi.data;
-            left = auxi.left;
-            right = auxi.right;
+            data= auxi.data;
+            left= auxi.left;
+            right= auxi.right;
 
-            if (lineScanner.hasNext())
+            if (lineScanner.hasNext() )
                 throw new RuntimeException("Bad expression");
         }
 
@@ -155,58 +130,31 @@ public class ExpTree {
             this.data = data;
             this.left = left;
             this.right = right;
+
         }
 
-        public boolean isLeaf() {
-            return left == null && right == null;
-        }
-
-        private Node buildExpression() {
-            String data;
-            // Caso base, no tiene un parentesis, tiene que ser una hoja.
-            if (!lineScanner.hasNext("\\(")) {
-                if (!lineScanner.hasNext() /*|| !isConstant(data = lineScanner.next())*/) {
-                    throw new RuntimeException("Missing or not a constant.");
+        private Node buildExpression() 	{
+            if(lineScanner.hasNext("\\(")){
+                lineScanner.next();
+                Node left = buildExpression();
+                if(!lineScanner.hasNext("\\+|-|\\*|/")){
+                    throw new IllegalArgumentException("Faltan operadores");
                 }
-                data = lineScanner.next();
-                return new Node(data, null, null);
+                String aux = lineScanner.next();
+                Node right = buildExpression();
+                if(lineScanner.hasNext("\\)")){
+                    lineScanner.next();
+                    return new Node(aux,left,right);
+                }
+                throw new IllegalArgumentException("Falta parentesis que cierra");
             }
-            // Caso en el que tiene un parentesis, es una expresion.
-            lineScanner.next(); // lo consumo.
-            Node leftNode = buildExpression(); // armo la expresion izquierda.
-
-            // Busco al operador.
-            if (!lineScanner.hasNext() || !isOperator(data = lineScanner.next()))
-                throw new RuntimeException("Missing or Invalid op.");
-
-            Node rightNode = buildExpression(); // armo la expresion derecha.
-
-            // Espero un ).
-            if (!lineScanner.hasNext("\\)")) {
-                throw new RuntimeException("Bad expression");
+            else if(lineScanner.hasNext("-?[0-9]+(\\.[0-9]+)?")){
+                return new Node(lineScanner.next(), null, null);
             }
-            lineScanner.next(); // lo consumo.
-
-            return new Node(data, leftNode, rightNode);
-        }
-
-        private boolean isOperator(String c) {
-            return c.equals("+") || c.equals("-")
-                    || c.equals("*") || c.equals("/")
-                    || c.equals("^");
-        }
-
-        private boolean isConstant(String string) {
-            boolean numeric = true;
-            try {
-                Double.parseDouble(string);
-            } catch (NumberFormatException e) {
-                numeric = false;
-            }
-            return numeric;
+            throw new IllegalArgumentException("Caracter invalido. Numero faltante");
         }
 
 
-    }  // end Node class
+    }
 
-}  // end ExpTree
+}  

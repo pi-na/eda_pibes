@@ -44,27 +44,48 @@ public class BSTree<T extends Comparable<? super T>> implements BSTreeInterface<
         root = deleteRec(root, myData);
     }
 
+    //  Implementacion de delete desde el header del arbol. Reciebe un nodo a partir del que recorrer para eliminar
+    //  el dato deseado. Siempre se llama sobre la raiz, por lo que retorna la raiz del arbol con el nodo
+    //  deseado ya eliminado.
     private Node<T> deleteRec(Node<T> node, T myData){
+        // Caso base: el nodo es nulo, EL DATO A ELIMINAR NO ESTA PRESENTE EN EL ARBOL
         if(node == null){
             return node;
         }
+
+        //  El nodo a eliminar esta en el subarbol izquierdo
         if(node.data.compareTo(myData) > 0){
+            //  Le conecto a left el subarbol izquierdo con el nodo ya eliminado
             node.left = deleteRec(node.left, myData);
             return node;
         }
+
+        //  El nodo a eliminar esta en el subarbol derecho
         if(node.data.compareTo(myData) < 0){
             node.right = deleteRec(node.right, myData);
             return node;
         }
+
+        //  ELSE Soy el nodo a eliminar! (el dato a eliminar es igual al dato en el nodo actual)
+
+        //  No tengo hijos
         if(node.getLeft() == null && node.getRight() == null){
             return null;
         }
+
+        //  Solo tengo hijo a la derecha
         if(node.getLeft() != null && node.getRight() == null){
             return node.left;
         }
+
+        //  Solo tengo hijo a la izquierda
         if(node.getRight() != null && node.getLeft() == null){
             return node.right;
         }
+
+        //  ELSE tengo 2 hijos; VER NOTION. Texto del notion:
+        //  "Se lo reemplaza (UNICAMENTE en valor!!) por un nodo lexicográficamente adyacente (...) Finalmente, se borra al nodo que lo reemplazó"
+        //  En esta implementacion se escogio usar el predecesor inorder (subarbol izquierdo)
         Node<T> searched = searchNode(node.left);
         node.data = searched.data;
         node.left = deleteRec(node.left, searched.data);
